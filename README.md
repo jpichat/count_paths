@@ -4,7 +4,7 @@
 
 In the case &epsilon;=1, the graph is a path graph. For &epsilon;>1, it becomes an &epsilon;-connected graph and in our case, only the first and last nodes have degree &epsilon; while all other (intermediate) vertices have degree &epsilon;+1.
 
-__Question:__ How many (3,2)-paths are there in a 2-connected graph with n=6 vertices? (the case &epsilon;=1 is trivial and gives only `[3, 2]`)
+__Question:__ What are all the (3,2)-paths in a 2-connected graph with n=6 vertices? (the case &epsilon;=1 is trivial and gives only `[3, 2]`)
 
 __Answer:__ `[[3, 1, 0, 2], [3, 1, 2], [3, 2], [3, 4, 2], [3, 5, 4, 2]]`
 
