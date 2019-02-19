@@ -1,6 +1,8 @@
+### counting (s,t)-paths in a graph
+
 `get_paths` looks for all the simple paths that connect vertices `s` and `t` in an undirected graph with n vertices (each of degree at least \epsilon;). 
 
-In the case &epsilon;=1, the graph is a path graph. For &epsilon;>1, it becomes an &epsilon;-connected graph and in our case, only the first and last nodes have degree \epsilon; while all other (intermediate) vertices have degree \epsilon;+1.
+In the case &epsilon;=1, the graph is a path graph. For &epsilon;>1, it becomes an &epsilon;-connected graph and in our case, only the first and last nodes have degree &epsilon; while all other (intermediate) vertices have degree &epsilon;+1.
 
 __Question:__ How many (3,2)-paths are there in a 2-connected graph with n=6 vertices? (the case &epsilon;=1 is trivial and gives only `[3, 2]`)
 
