@@ -14,14 +14,18 @@ In our case all vertices are connected with up to &epsilon; neighbours above and
  - S=f&lowast;g where f=[1,1,...,1]&isin;&Ropf;<sup>n</sup> and g=[1,..,1,0,1,..,1]&isin;&Ropf;<sup>2&epsilon;+1</sup> (there are &epsilon; ones on each side of the central zero). 
  - One easily verifies that if &epsilon;&ge;n-1, then S=[n-1,n-1,...,n-1]&isin;&Ropf;<sup>n</sup> (i.e., the graph is complete).
 
-In other words, here, the adjacency matrix looks like:                 
-0 1 1 &ctdot; 1 1 0  
-1 0 1 1 &ctdot; 1 1  
-&vellip; &dtdot; &dtdot; &dtdot; &ctdot; 1 1  
-1 1 &ctdot;  
-0 1 &ctdot; 1 0
+Another way consists of summing the elements of each row (or column) of the adjacency matrix of the graph. Indeed, the adjacency matrix of a a 2-connected graph with n=6 vertices, G is:
 
-__Question:__ What are all the (3,2)-paths in a 2-connected graph with n=6 vertices? (the case &epsilon;=1 is trivial and gives only `[3, 2]`)
+0 1 1 0 0 0  
+1 0 1 1 0 0  
+1 1 0 1 1 0  
+0 1 1 0 1 1  
+0 0 1 1 0 1  
+0 0 0 1 1 0  
+
+The number of diagonals of ones above the main diagonal is &epsilon;.
+
+__Question:__ What are all the (3,2)-paths in G? (the case &epsilon;=1 is trivial and gives only `[3, 2]`)
 
 __Answer:__ `[[3, 1, 0, 2], [3, 1, 2], [3, 2], [3, 4, 2], [3, 5, 4, 2]]`
 
