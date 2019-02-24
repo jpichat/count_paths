@@ -16,13 +16,13 @@ In our case all vertices are connected with up to &epsilon; neighbours above and
 
 Another way consists of summing the elements of each row (or column) of the adjacency matrix of the graph. Indeed, the adjacency matrix of a a 2-connected graph with n=6 vertices, G is:
 <table>
-  <tr> <td>0</td> <td bgcolor=rgb(255,0,0)>1</td> <td bgcolor=rgb(255,0,0)>1</td> <td>0</td> <td>0</td> <td>0</td> </tr>
-  <tr> <td bgcolor=rgb(255,0,0)>1</td> <td>0</td> <td bgcolor=rgb(255,0,0)>1</td> <td bgcolor=rgb(255,0,0)>1</td> <td>0</td> <td>0</td> </tr>
-  <tr> <td bgcolor=rgb(255,0,0)>1</td> <td bgcolor=rgb(255,0,0)>1</td> <td>0</td> <td bgcolor=rgb(255,0,0)>1</td> <td bgcolor=rgb(255,0,0)>1</td> <td>0</td> </tr>
-  <tr> <td>0</td> <td bgcolor=rgb(255,0,0)>1</td> <td bgcolor=rgb(255,0,0)>1</td> <td>0</td> <td bgcolor=rgb(255,0,0)>1</td bgcolor=rgb(255,0,0)> <td>1</td> </tr>
-  <tr> <td>0</td> <td>0</td> <td bgcolor=rgb(255,0,0)>1</td> <td bgcolor=rgb(255,0,0)>1</td> <td>0</td> <td bgcolor=rgb(255,0,0)>1</td>  </tr>
-  <tr> <td>0</td> <td>0</td> <td>0</td> <td bgcolor=rgb(255,0,0)>1</td> <td bgcolor=rgb(255,0,0)>1</td> <td>0</td> </tr>
-</table>
+  <tr> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#ff9999>0</td> </tr>
+  <tr> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#ff9999>0</td> </tr>
+  <tr> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> </tr>
+  <tr> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> </tr>
+  <tr> <td bgcolor=#ff9999>0</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td>  </tr>
+  <tr> <td bgcolor=#ff9999>0</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> </tr>
+</table> 
 
 The number of diagonals of ones above the main diagonal is &epsilon;.
 
