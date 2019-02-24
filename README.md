@@ -16,13 +16,9 @@ In our case all vertices are connected with up to &epsilon; neighbours above and
 
 In other words, here, the adjacency matrix looks like:                 
 0 1 1 &ctdot; 1 1 0
-
 1 0 1 1 &ctdot; 1 0
-
 &vellip; 1 &dtdot;1 &ctdot; 1 0
-
 1 1 &ctdot;
-
 0 1 &ctdot; 1 0
 
 __Question:__ What are all the (3,2)-paths in a 2-connected graph with n=6 vertices? (the case &epsilon;=1 is trivial and gives only `[3, 2]`)
