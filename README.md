@@ -16,12 +16,12 @@ In our case all vertices are connected with up to &epsilon; neighbours above and
 
 Another way consists of summing the elements of each row (or column) of the adjacency matrix of the graph. Indeed, the adjacency matrix of a a 2-connected graph with n=6 vertices, G is:
 <table>
-  <tr> <td>0</td> <td>1</td> <td>1</td> <td>0</td> <td>0</td> <td>0</td> </tr>
-  <tr> <td>1</td> <td>0</td> <td>1</td> <td>1</td> <td>0</td> <td>0</td> </tr>
-  <tr> <td>1</td> <td>1</td> <td>0</td> <td>1</td> <td>1</td> <td>0</td> </tr>
-  <tr> <td>0</td> <td>1</td> <td>1</td> <td>0</td> <td>1</td> <td>1</td> </tr>
-  <tr> <td>0</td> <td>0</td> <td>1</td> <td>1</td> <td>0</td> <td>1</td>  </tr>
-  <tr> <td>0</td> <td>0</td> <td>0</td> <td>1</td> <td>1</td> <td>0</td> </tr>
+  <tr> <td>0</td> <td bgcolor=rgba(255,0,0,0.5)>1</td> <td bgcolor=rgba(255,0,0,0.5)>1</td> <td>0</td> <td>0</td> <td>0</td> </tr>
+  <tr> <td bgcolor=rgba(255,0,0,0.5)>1</td> <td>0</td> <td bgcolor=rgba(255,0,0,0.5)>1</td> <td bgcolor=rgba(255,0,0,0.5)>1</td> <td>0</td> <td>0</td> </tr>
+  <tr> <td bgcolor=rgba(255,0,0,0.5)>1</td> <td bgcolor=rgba(255,0,0,0.5)>1</td> <td>0</td> <td bgcolor=rgba(255,0,0,0.5)>1</td> <td bgcolor=rgba(255,0,0,0.5)>1</td> <td>0</td> </tr>
+  <tr> <td>0</td> <td bgcolor=rgba(255,0,0,0.5)>1</td> <td bgcolor=rgba(255,0,0,0.5)>1</td> <td>0</td> <td bgcolor=rgba(255,0,0,0.5)>1</td bgcolor=rgba(255,0,0,0.5)> <td>1</td> </tr>
+  <tr> <td>0</td> <td>0</td> <td bgcolor=rgba(255,0,0,0.5)>1</td> <td bgcolor=rgba(255,0,0,0.5)>1</td> <td>0</td> <td bgcolor=rgba(255,0,0,0.5)>1</td>  </tr>
+  <tr> <td>0</td> <td>0</td> <td>0</td> <td bgcolor=rgba(255,0,0,0.5)>1</td> <td bgcolor=rgba(255,0,0,0.5)>1</td> <td>0</td> </tr>
 </table>
 
 The number of diagonals of ones above the main diagonal is &epsilon;.
