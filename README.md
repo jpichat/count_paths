@@ -15,22 +15,14 @@ In our case all vertices are connected with up to &epsilon; neighbours above and
  - One easily verifies that if &epsilon;&ge;n-1, then S=[n-1,n-1,...,n-1]&isin;&Ropf;<sup>n</sup> (i.e., the graph is complete).
 
 Another way consists of summing the elements of each row (or column) of the adjacency matrix of the graph. Indeed, the adjacency matrix of a a 2-connected graph with n=6 vertices, G is:
-| 0 | 1 | 1 | 0 | 0 | 0 |
-| 1 | 0 | 1 | 1 | 0 | 0 |
-| 1 | 1 | 0 | 1 | 1 | 0 |
-| 0 | 1 | 1 | 0 | 1 | 1 |
-| 0 | 0 | 1 | 1 | 0 | 1 |
-| 0 | 0 | 0 | 1 | 1 | 0 |
-
-
-<!-- <table>
-  <tr> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#ff9999>0</td> </tr>
+<table>
+  <tr> <td bgcolor="#ff9999">0</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#ff9999">0</td> </tr>
   <tr> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#ff9999>0</td> </tr>
   <tr> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> </tr>
   <tr> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> </tr>
   <tr> <td bgcolor=#ff9999>0</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td>  </tr>
   <tr> <td bgcolor=#ff9999>0</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> </tr>
-</table>  -->
+</table> 
 
 The number of diagonals of ones above the main diagonal is &epsilon;.
 
