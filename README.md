@@ -16,8 +16,8 @@ In our case all vertices are connected with up to &epsilon; neighbours above and
 
 In other words, here, the adjacency matrix looks like:                 
 0 1 1 &ctdot; 1 1 0  
-1 0 1 1 &ctdot; 1 0  
-&vellip; 1 &dtdot;1 &ctdot; 1 0  
+1 0 1 1 &ctdot; 1 1  
+&vellip; &dtdot; &dtdot; &dtdot; &ctdot; 1 1  
 1 1 &ctdot;  
 0 1 &ctdot; 1 0
 
