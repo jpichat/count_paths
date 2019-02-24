@@ -24,7 +24,7 @@ Another way consists of summing the elements of each row (or column) of the adja
   <tr> <td bgcolor=#ff9999>0</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> </tr>
 </table> 
 
-The number of diagonals of ones above the main diagonal is &epsilon;.
+The number of diagonals of ones above (resp. below) the main diagonal is &epsilon; (and it is bounded by n-1).
 
 __Question:__ What are all the (3,2)-paths in G? (the case &epsilon;=1 is trivial and gives only `[3, 2]`)
 
