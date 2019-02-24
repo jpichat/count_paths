@@ -1,6 +1,16 @@
 import numpy as np
 
-def get_neighbours(current_node, n, eps, explored_nodes):
+
+def graph_vdegrees(n:int, eps:int):
+    """returns the sequence of degrees of each vertex
+    of our eps-connected n-vertex graph
+    """
+    g=np.ones(n)
+    el=np.hstack(([1]*eps,[0],[1]*eps))
+    return signal.convolve(g, el, 'same')
+
+
+def get_neighbours(current_node:int, n:int, eps:int, explored_nodes:list):
     """nodes that can be reached from current_node
     """
     return list(filter(lambda a: (a!=current_node) &
@@ -9,8 +19,7 @@ def get_neighbours(current_node, n, eps, explored_nodes):
                                  (a<n), range(current_node-eps,current_node+(eps+1))) )
 
     
-  
-def count_empty(l):
+def count_empty(l:list):
     """count empty sublists of l until one non-empty is found
     """
     c=0
@@ -22,8 +31,7 @@ def count_empty(l):
     return c
 
 
-
-def reverse(neighbours_list, explored_nodes):
+def reverse(neighbours_list:list, explored_nodes:list):
     """remove empty lists to come back K levels up
     """
     K=count_empty(neighbours_list)
@@ -36,8 +44,7 @@ def reverse(neighbours_list, explored_nodes):
     return neighbours_list, explored_nodes
 
 
-
-def get_paths(n, eps, start_node=None, end_node=None, verbose=False):
+def get_paths(n:int, eps:int, start_node=None, end_node=None, verbose=False):
     """returns all simple paths connecting vertices `start_node` and
         `end_node` in an eps-connected undirected graph, G with n vertices
         
@@ -86,8 +93,7 @@ def get_paths(n, eps, start_node=None, end_node=None, verbose=False):
     return(paths_list)
 
 
-
-def adjency_matrix(n, eps):
+def adjency_matrix(n:int, eps:int):
     """return the adjency matrix of our n-vertex 
     eps-connected undirected graph
     """
@@ -102,7 +108,10 @@ def adjency_matrix(n, eps):
 
 
 if __name__=="__main__":
-    n=6     #total number of vertices
-    eps=2   #number of jumps allowed
-    paths_list=get_paths(n, eps, verbose=True)
+    n=6                 #total number of vertices
+    eps=2               #number of jumps allowed
+    start_node=None
+    end_node=None
+
+    paths_list=get_paths(n, eps, start_node, end_node, verbose=True)
     print(paths_list)
