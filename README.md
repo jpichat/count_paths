@@ -1,5 +1,4 @@
-========
-### counting (s,t)-paths in a graph
+## counting (s,t)-paths in a graph
 
 `get_paths` looks for all the simple paths that connect vertices `s` and `t` in an undirected graph with n vertices of degrees:
  - at least &epsilon; and at most 2&epsilon; if 1&le;&epsilon;&le;floor(n/2) 
@@ -17,8 +16,8 @@ In our case all vertices are connected with up to &epsilon; neighbours above and
 
 In other words, here, the adjacency matrix looks like:                 
 0 1 1 &ctdot; 1 1 0  
-1 0 1 1 &ctdot; 1 0            
-&vellip; 1 &dtdot; 1 &ctdot; 1 0
+1 0 1 1 &ctdot; 1 0
+&vellip; 1 &dtdot;1 &ctdot; 1 0
 1 1 &ctdot; 
 0 1 &ctdot; 1 0
 
