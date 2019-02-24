@@ -5,7 +5,16 @@
 
 _NB0_: if &epsilon;=1, the graph is a path graph. If 1&lt;&epsilon;&lt;n-2, the graph is an &epsilon;-connected graph. If &epsilon;=n-1, the graph is a complete graph
 
-In our case all vertices are connected with up to &epsilon; neighbours above and below (when possible). Hence, the sequence of vertex degrees, S, can be obtained by convolution: S=f\*g where f=[1,1,...,1]&isin;&Ropf;<sup>n</sup> and g=[1,..,1,0,1,..,1]&isin;&Ropf;<sup>2&epsilon;+1</sup> (there are &epsilon; ones on each side of the central zero). One easily verifies that if &epsilon;&ge;n-1, then S=[n-1,n-1,...,n-1]&isin;&Ropf;<sup>n</sup> (i.e., the graph is complete).
+In our case all vertices are connected with up to &epsilon; neighbours above and below (when possible). Hence, the sequence of vertex degrees, S, can be obtained by convolution: S=f&lowast;g where f=[1,1,...,1]&isin;&Ropf;<sup>n</sup> and g=[1,..,1,0,1,..,1]&isin;&Ropf;<sup>2&epsilon;+1</sup> (there are &epsilon; ones on each side of the central zero). One easily verifies that if &epsilon;&ge;n-1, then S=[n-1,n-1,...,n-1]&isin;&Ropf;<sup>n</sup> (i.e., the graph is complete).
+
+In other words, here, the adjacency matrix looks like:
+ -                -
+| 0 1 &ctdot; 1 0  |
+| 1 0              |
+|  &vellip; &dtdot; | 
+|  1               |
+|  0 1 &ctdot; 1 0 | 
+ -                -
 
 __Question:__ What are all the (3,2)-paths in a 2-connected graph with n=6 vertices? (the case &epsilon;=1 is trivial and gives only `[3, 2]`)
 

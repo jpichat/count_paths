@@ -1,13 +1,13 @@
 import numpy as np
+from scipy import signal
 
-
-def graph_vdegrees(n:int, eps:int):
+def vdegrees(n:int, eps:int):
     """returns the sequence of degrees of each vertex
     of our eps-connected n-vertex graph
     """
     g=np.ones(n)
     el=np.hstack(([1]*eps,[0],[1]*eps))
-    return signal.convolve(g, el, 'same')
+    return signal.fftconvolve(g, el, 'same')
 
 
 def get_neighbours(current_node:int, n:int, eps:int, explored_nodes:list):
