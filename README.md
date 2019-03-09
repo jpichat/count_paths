@@ -1,6 +1,6 @@
 ## counting (s,t)-paths in a graph
 
-This is part of the code for the paper [(Pichat, 2015)](http://discovery.ucl.ac.uk/1468614/3/ISBI2015_tig.pdf)
+This is part of the code for the paper [(Pichat, 2015)](http://discovery.ucl.ac.uk/1468614/3/ISBI2015_tig.pdf) A multipath approach to histology volume reconstruction
 
 `get_paths` looks for all the simple paths that connect vertices `s` and `t` in an undirected graph with n vertices of degrees:
  - at least &epsilon; and at most 2&epsilon; if 1&le;&epsilon;&le;floor(n/2) 
