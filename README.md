@@ -13,7 +13,7 @@ _NB1_:
  - if &epsilon;=n-1, the graph is a complete graph.
 
 We work with a specific graph, where all vertices are connected with up to &epsilon; neighbours above and below (when possible). The sequence of vertex degrees, S, can be obtained (1) by convolution: 
- - S=f&lowast;g where f=[1,1,...,1]&isin;&Ropf;<sup>n</sup> and g=[1,..,1,0,1,..,1]&isin;&Ropf;<sup>2&epsilon;+1</sup> (there are &epsilon; ones on each side of the central zero and that zero is used so that no vertex is self-connected). 
+ - S=f&lowast;g where f=[1,1,...,1]&isin;&Ropf;<sup>n</sup> and g=[1,..,1,0,1,..,1]&isin;&Ropf;<sup>2&epsilon;+1</sup> (there are &epsilon; ones on each side of the central zero; that zero is used so that no vertex is self-connected). 
  - One easily verifies that if &epsilon;&ge;n-1, then S=[n-1,n-1,...,n-1]&isin;&Ropf;<sup>n</sup> (i.e., the graph is complete).
  - ex: for n=6 vertices, &epsilon;=2, the sequence of degrees is: S=[2,3,4,4,3,2].
 
