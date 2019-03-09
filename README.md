@@ -11,20 +11,23 @@ _NB1_:
  - if &epsilon;=n-1, the graph is a complete graph.
 
 In our case all vertices are connected with up to &epsilon; neighbours above and below (when possible). Hence, the sequence of vertex degrees, S, can be obtained by convolution: 
- - S=f&lowast;g where f=[1,1,...,1]&isin;&Ropf;<sup>n</sup> and g=[1,..,1,0,1,..,1]&isin;&Ropf;<sup>2&epsilon;+1</sup> (there are &epsilon; ones on each side of the central zero). 
+ - S=f&lowast;g where f=[1,1,...,1]&isin;&Ropf;<sup>n</sup> and g=[1,..,1,0,1,..,1]&isin;&Ropf;<sup>2&epsilon;+1</sup> (there are &epsilon; ones on each side of the central zero and that zero is used so that no vertex is self-connected). 
  - One easily verifies that if &epsilon;&ge;n-1, then S=[n-1,n-1,...,n-1]&isin;&Ropf;<sup>n</sup> (i.e., the graph is complete).
+ - ex: for n=6 vertices, &epsilon;=2, the sequence of degrees is: S=[2,3,4,4,3,2].
 
-Another way consists of summing the elements of each row (or column) of the adjacency matrix of our graph. With n=6 and &epsilon;=2 we get:
+Another way to get S consists of summing the elements of each row (or column) of the adjacency matrix of our graph. Using the same parameters, we get:
 <table>
   <tr> <td bgcolor="#ff9999">0</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#ff9999">0</td> </tr>
-  <tr> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#ff9999>0</td> </tr>
-  <tr> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> </tr>
-  <tr> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> </tr>
-  <tr> <td bgcolor=#ff9999>0</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td>  </tr>
-  <tr> <td bgcolor=#ff9999>0</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#ff9999>0</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#b3ffb3>1</td> <td bgcolor=#ff9999>0</td> </tr>
+  <tr> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#ff9999">0</td> </tr>
+  <tr> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#ff9999">0</td> </tr>
+  <tr> <td bgcolor="#ff9999">0</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#b3ffb3">1</td> </tr>
+  <tr> <td bgcolor="#ff9999">0</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#b3ffb3">1</td>  </tr>
+  <tr> <td bgcolor="#ff9999">0</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#ff9999">0</td> </tr>
 </table> 
 
-_NB2_: the number of diagonals of ones above (resp. below) the main diagonal is &epsilon; (and it is bounded by n-1).
+which yields the same sequence, S=[2,3,4,4,3,2].
+
+_NB2_: the number of diagonals of ones above (resp. below) the main diagonal is &epsilon; (and it is bounded by n-1, in which case the graph is complete--without self-connections).
 
 __Question:__ What are all the (3,2)-paths in G? (the case &epsilon;=1 is trivial and gives only `[3, 2]`)
 
