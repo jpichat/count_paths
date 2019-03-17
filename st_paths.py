@@ -47,7 +47,7 @@ def get_paths(adjacency_matrix, start_node=None, end_node=None, verbose=False):
     `end_node` in undirected graph of order n
     """
     if start_node is None:
-        start_node=int(np.floor(adjacency_matrix.shape[0]/2))
+        start_node=adjacency_matrix.shape[0]//2
     if end_node is None:
         if 0<=start_node<adjacency_matrix.shape[0]:
             end_node=start_node+1
