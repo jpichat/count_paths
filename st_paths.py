@@ -107,14 +107,14 @@ if __name__=="__main__":
     eps=2               #number of jumps allowed
     A=get_adjacency_matrix(n,eps) #our graph
     
-    #test with random graph
-    A=np.array([[0,1,0,1,0],
-                [1,0,0,1,1],
-                [0,0,0,1,1],
-                [1,1,1,0,0],
-                [0,1,1,0,0]])
+    # #test with random graph
+    # A=np.array([[0,1,0,1,0],
+    #             [1,0,0,1,1],
+    #             [0,0,0,1,1],
+    #             [1,1,1,0,0],
+    #             [0,1,1,0,0]])
 
-    start_node=4
-    end_node=5
+    start_node=3
+    end_node=2
     paths_list=get_paths(A, start_node, end_node, verbose=True)
     print('==> path list: '+str(paths_list))
