@@ -44,7 +44,7 @@ def reverse(neighbours_list:list, explored_nodes:list):
 
 def get_paths(adjacency_matrix, start_node=None, end_node=None, verbose=False):
     """returns all simple paths connecting vertices `start_node` and
-    `end_node` in undirected graph of order n
+    `end_node` in undirected graph of order n with adjacency matrix `adjacency_matrix`
     """
     if start_node is None:
         start_node=adjacency_matrix.shape[0]//2
