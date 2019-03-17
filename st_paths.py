@@ -2,14 +2,6 @@ import numpy as np
 from scipy import signal
 
 
-def vdegrees(n:int, eps:int):
-    """returns the sequence of degrees of each vertex
-    of our eps-connected n-vertex graph
-    """
-    g=np.ones(n)
-    el=np.hstack(([1]*eps,[0],[1]*eps))
-    return signal.fftconvolve(g, el, 'same')
-
   
 def get_neighbours(A, current_node:int, explored_nodes:list):
     current_node_neighbours=np.copy(A[current_node]) #get list of neighbours of current_node
@@ -49,12 +41,12 @@ def get_paths(adjacency_matrix, start_node=None, end_node=None, verbose=False):
     if start_node is None:
         start_node=adjacency_matrix.shape[0]//2
     if end_node is None:
-        if 0<=start_node<adjacency_matrix.shape[0]:
+        if 0<=start_node<adjacency_matrix.shape[0]-1:
             end_node=start_node+1
         else:
             end_node=start_node-1
     assert 0<=start_node<adjacency_matrix.shape[0]
-    assert 0<end_node<=adjacency_matrix.shape[0]
+    assert 0<=end_node<adjacency_matrix.shape[0]
     if verbose:
         print('==> adjacency matrix:\n'+str(adjacency_matrix))
         print('==> node set: '+str(np.arange(adjacency_matrix.shape[0])))
@@ -83,6 +75,17 @@ def get_paths(adjacency_matrix, start_node=None, end_node=None, verbose=False):
     return(paths_list)
 
 
+
+#=== other utils
+def vdegrees(n:int, eps:int):
+    """returns the sequence of degrees of each vertex
+    of our eps-connected n-vertex graph using convolution
+    """
+    g=np.ones(n)
+    el=np.hstack(([1]*eps,[0],[1]*eps))
+    return signal.convolve(g, el, 'same')
+
+
 def get_adjacency_matrix(n:int, eps:int):
     """return the adjency matrix of our n-vertex 
     eps-connected undirected graph
@@ -104,14 +107,14 @@ if __name__=="__main__":
     eps=2               #number of jumps allowed
     A=get_adjacency_matrix(n,eps) #our graph
     
-    # #test with random graph
-    # A=np.array([[0,1,0,1,0],
-    #             [1,0,0,1,1],
-    #             [0,0,0,1,1],
-    #             [1,1,1,0,0],
-    #             [0,1,1,0,0]])
+    #test with random graph
+    A=np.array([[0,1,0,1,0],
+                [1,0,0,1,1],
+                [0,0,0,1,1],
+                [1,1,1,0,0],
+                [0,1,1,0,0]])
 
-    start_node=3
-    end_node=2
+    start_node=4
+    end_node=5
     paths_list=get_paths(A, start_node, end_node, verbose=True)
     print('==> path list: '+str(paths_list))
