@@ -1,6 +1,7 @@
 import numpy as np
 from scipy import signal
 
+
 def vdegrees(n:int, eps:int):
     """returns the sequence of degrees of each vertex
     of our eps-connected n-vertex graph
@@ -9,16 +10,13 @@ def vdegrees(n:int, eps:int):
     el=np.hstack(([1]*eps,[0],[1]*eps))
     return signal.fftconvolve(g, el, 'same')
 
+  
+def get_neighbours(A, current_node:int, explored_nodes:list):
+    current_node_neighbours=np.copy(A[current_node]) #get list of neighbours of current_node
+    current_node_neighbours[explored_nodes]=0 #setting visited nodes to 0
+    return np.where(current_node_neighbours==1)[0].tolist()
 
-def get_neighbours(current_node:int, n:int, eps:int, explored_nodes:list):
-    """nodes that can be reached from current_node
-    """
-    return list(filter(lambda a: (a!=current_node) &
-                                 (a not in explored_nodes) &
-                                 (a>=0) &
-                                 (a<n), range(current_node-eps,current_node+(eps+1))) )
 
-    
 def count_empty(l:list):
     """count empty sublists of l until one non-empty is found
     """
@@ -44,34 +42,26 @@ def reverse(neighbours_list:list, explored_nodes:list):
     return neighbours_list, explored_nodes
 
 
-def get_paths(n:int, eps:int, start_node=None, end_node=None, verbose=False):
+def get_paths(adjacency_matrix, start_node=None, end_node=None, verbose=False):
     """returns all simple paths connecting vertices `start_node` and
-        `end_node` in an eps-connected undirected graph, G with n vertices
-        
-        Parameters:
-        -----------
-        :n:         total number of vertices
-        :eps:       number of hops allowed (max(eps)=n-1)
-        
-        USAGE:
-        ------
-        n=6     #total number of vertices
-        eps=2   #number of jumps allowed
-        paths_list=get_paths(eta, eps, verbose=True)
+    `end_node` in undirected graph of order n
     """
     if start_node is None:
-        start_node=int(np.ceil(n/2))
+        start_node=int(np.floor(adjacency_matrix.shape[0]/2))
     if end_node is None:
-        end_node=start_node-1
-    assert n>=2
-    assert 0<=start_node<n
-    assert 0<=end_node<n
+        if 0<=start_node<adjacency_matrix.shape[0]:
+            end_node=start_node+1
+        else:
+            end_node=start_node-1
+    assert 0<=start_node<adjacency_matrix.shape[0]
+    assert 0<end_node<=adjacency_matrix.shape[0]
     if verbose:
-        print('start/end: '+str(start_node)+'->'+str(end_node)+' - set: '+str(list(range(n))))
-        print('n:'+str(n)+' - eps:'+str(eps))
+        print('==> adjacency matrix:\n'+str(adjacency_matrix))
+        print('==> node set: '+str(np.arange(adjacency_matrix.shape[0])))
+        print('==> start/end: '+str(start_node)+'->'+str(end_node))
 
     explored_nodes=[start_node]
-    children=get_neighbours(start_node, n, eps, explored_nodes)
+    children=get_neighbours(adjacency_matrix, start_node, explored_nodes)
     neighbours_list=[children]
     paths_list=[]
     while len(neighbours_list[-1])!=0 or len(neighbours_list)>1:
@@ -83,7 +73,7 @@ def get_paths(n:int, eps:int, start_node=None, end_node=None, verbose=False):
             #come back one (or more) level up
             neighbours_list, explored_nodes=reverse(neighbours_list, explored_nodes)
         else:
-            children=get_neighbours(current_node, n, eps, explored_nodes)
+            children=get_neighbours(adjacency_matrix, current_node, explored_nodes)
             if len(children)==0:
                 #come back up
                 neighbours_list, explored_nodes=reverse(neighbours_list, explored_nodes)
@@ -93,7 +83,7 @@ def get_paths(n:int, eps:int, start_node=None, end_node=None, verbose=False):
     return(paths_list)
 
 
-def adjency_matrix(n:int, eps:int):
+def get_adjacency_matrix(n:int, eps:int):
     """return the adjency matrix of our n-vertex 
     eps-connected undirected graph
     """
@@ -101,17 +91,27 @@ def adjency_matrix(n:int, eps:int):
     dr,dc=np.diag_indices(n)
     for o in range(1,eps+1):
         upper_d=dc+o
-        A[[dr[:-o],upper_d[:-o]]]=1
+        A[(dr[:-o],upper_d[:-o])]=1
     i_lower=np.tril_indices(n,-1)
     A[i_lower]=A.T[i_lower]
-    return A
+    return A.astype(int)
+
 
 
 if __name__=="__main__":
+    #special case: our graph
     n=6                 #total number of vertices
     eps=2               #number of jumps allowed
-    start_node=None
-    end_node=None
+    A=get_adjacency_matrix(n,eps) #our graph
+    
+    # #test with random graph
+    # A=np.array([[0,1,0,1,0],
+    #             [1,0,0,1,1],
+    #             [0,0,0,1,1],
+    #             [1,1,1,0,0],
+    #             [0,1,1,0,0]])
 
-    paths_list=get_paths(n, eps, start_node, end_node, verbose=True)
-    print(paths_list)
+    start_node=3
+    end_node=2
+    paths_list=get_paths(A, start_node, end_node, verbose=True)
+    print('==> path list: '+str(paths_list))
