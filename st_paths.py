@@ -92,7 +92,7 @@ def naive_path_generation(adjacency_matrix, start_node:int, end_node:int):
         explored_nodes.append(next_valid)
         children_deeper=get_neighbours(adjacency_matrix, next_valid, explored_nodes)
         if len(children_deeper)>0:
-            g=g/len(children_deeper)
+            g/=len(children_deeper)
             counter+=1
             idx_deep=np.random.randint(0,len(children_deeper))
             next_valid=children_deeper[idx_deep]
@@ -153,14 +153,15 @@ def random_adjacency_matrix(s=10, density=5, return_st=True):
 
 
 if __name__=="__main__":
-    #===adjacency matrix: special case of our paper's graph
+    #===adjacency matrix
+    #special case of our paper's graph
     # n=6                 #total number of vertices
     # eps=5               #number of jumps allowed
     # A=our_adjacency_matrix(n,eps)
     # start_node=3
     # end_node=2
 
-    #adjacency matrix of a random graph
+    #random graph
     A, start_node, end_node=random_adjacency_matrix(12, density=25, return_st=True)
 
     #===get exhaustive list (and therefore number) of s-t paths 
@@ -169,7 +170,6 @@ if __name__=="__main__":
     # print('==> path list: '+str(paths_list))
 
     #===NAIVE estimation of number of s-t paths
-    N=0
     paths_list=[]
     G=[]
     L=[]
@@ -181,7 +181,7 @@ if __name__=="__main__":
             L.append(len(path)) #lenghts of generated valid paths
             if path not in paths_list:
                 paths_list.append(path)
-    print('==> [naive] estimated N: '+str(len(paths_list)))
+    print('==> [naive] estimated number of paths: '+str(len(paths_list)))
     #plots
     fig, ax= plt.subplots(nrows=1, ncols=1)
     binwidth=0.5
