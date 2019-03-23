@@ -1,6 +1,6 @@
 import numpy as np
 from scipy import signal
-
+import matplotlib.pyplot as plt
 
   
 def get_neighbours(A, current_node:int, explored_nodes:list):
@@ -76,6 +76,39 @@ def get_paths(adjacency_matrix, start_node=None, end_node=None, verbose=False):
 
 
 
+def naive_path_generation(adjacency_matrix, start_node:int, end_node:int):
+    """biased towards generating paths of shorter length: it does not allow one path to go
+    through the same root vertex twice [*], even though that would lead to a different solution
+    """
+    children_root=get_neighbours(adjacency_matrix, start_node, [start_node])
+    is_path=True
+    g=1
+    counter=1
+    explored_nodes=[start_node]
+    idx=np.random.randint(0,len(children_root))
+    next_valid=children_root[idx] #picks first next valid node
+    children_root=np.delete(children_root, idx) #delete it from the valid root nodes [*]
+    while next_valid!=end_node:
+        explored_nodes.append(next_valid)
+        children_deeper=get_neighbours(adjacency_matrix, next_valid, explored_nodes)
+        if len(children_deeper)>0:
+            g=g/len(children_deeper)
+            counter+=1
+            idx_deep=np.random.randint(0,len(children_deeper))
+            next_valid=children_deeper[idx_deep]
+            children_deeper=np.delete(children_deeper, idx_deep)
+        else:
+            is_path=False
+            break
+    if is_path:
+        explored_nodes.append(next_valid)
+        path=explored_nodes
+        return path, g, counter
+    else:
+        return [None]*3
+
+
+
 #=== other utils
 def vdegrees(n:int, eps:int):
     """returns the sequence of degrees of each vertex
@@ -86,7 +119,7 @@ def vdegrees(n:int, eps:int):
     return signal.convolve(g, el, 'same')
 
 
-def get_adjacency_matrix(n:int, eps:int):
+def our_adjacency_matrix(n:int, eps:int):
     """return the adjency matrix of our n-vertex 
     eps-connected undirected graph
     """
@@ -101,20 +134,62 @@ def get_adjacency_matrix(n:int, eps:int):
 
 
 
-if __name__=="__main__":
-    #special case: our graph
-    n=6                 #total number of vertices
-    eps=2               #number of jumps allowed
-    A=get_adjacency_matrix(n,eps) #our graph
-    
-    # #test with random graph
-    # A=np.array([[0,1,0,1,0],
-    #             [1,0,0,1,1],
-    #             [0,0,0,1,1],
-    #             [1,1,1,0,0],
-    #             [0,1,1,0,0]])
+def random_adjacency_matrix(s=10, density=5, return_st=True):
+    assert 1<=density<=sum(range(1,s))
+    A=np.zeros((s,s))
+    ru,cu=np.triu_indices_from(A,1)
+    random_ind_up=[(ru[k],cu[k]) for k in [np.random.randint(0,sum(range(1,s))) for _ in range(density)]]
+    for i_upper in random_ind_up:
+        A[i_upper]=1
+    i_lower = np.tril_indices(s, -1)
+    A[i_lower]=A.T[i_lower]
+    if return_st:
+        l=np.argwhere(A==1)
+        s,e=l[np.random.randint(0,len(l))]
+        return A, s, e
+    else:
+        return A,None,None
 
-    start_node=3
-    end_node=2
+
+
+if __name__=="__main__":
+    #===adjacency matrix: special case of our paper's graph
+    # n=6                 #total number of vertices
+    # eps=5               #number of jumps allowed
+    # A=our_adjacency_matrix(n,eps)
+    # start_node=3
+    # end_node=2
+
+    #adjacency matrix of a random graph
+    A, start_node, end_node=random_adjacency_matrix(12, density=25, return_st=True)
+
+    #===get exhaustive list (and therefore number) of s-t paths 
     paths_list=get_paths(A, start_node, end_node, verbose=True)
-    print('==> path list: '+str(paths_list))
+    print('==> exact number of paths: '+str(len(paths_list)))
+    # print('==> path list: '+str(paths_list))
+
+    #===NAIVE estimation of number of s-t paths
+    N=0
+    paths_list=[]
+    G=[]
+    L=[]
+    iterations=100000
+    for i in range(iterations):
+        path,g,c=naive_path_generation(A,start_node,end_node)
+        if path:
+            G.append(g) #likelihood
+            L.append(len(path)) #lenghts of generated valid paths
+            if path not in paths_list:
+                paths_list.append(path)
+    print('==> [naive] estimated N: '+str(len(paths_list)))
+    #plots
+    fig, ax= plt.subplots(nrows=1, ncols=1)
+    binwidth=0.5
+    plt.hist(L, bins=np.arange(2-binwidth/2, max(L)+1-binwidth/2, binwidth))
+    plt.xlabel('path length')
+    plt.ylabel('occurences')
+    plt.show()
+
+
+    #length-aware estimation of number of s-t paths
+
