@@ -135,6 +135,14 @@ def our_adjacency_matrix(n:int, eps:int):
 
 
 def random_adjacency_matrix(s=10, density=5, return_st=True):
+    """
+    Notes
+    -----
+    - density=sum(range(1,s)) does not ensure the graph is complete (without self-connections) as the same index 
+    may be picked multiple times in `random_upper` (however it gets less likely to happen as `s` grows). 
+    We can only say the graph is epsilon-connected with epsilon>=1.
+    - there might be isolated vertices
+    """
     assert 1<=density<=sum(range(1,s))
     A=np.zeros((s,s))
     l_upper=list(zip(*np.triu_indices_from(A, 1)))
@@ -153,7 +161,7 @@ def random_adjacency_matrix(s=10, density=5, return_st=True):
 
 
 if __name__=="__main__":
-    #===adjacency matrix
+    #===0.ADJACENCY matrix
     #special case of our paper's graph
     # n=6                 #total number of vertices
     # eps=5               #number of jumps allowed
@@ -164,12 +172,12 @@ if __name__=="__main__":
     #random graph
     A, start_node, end_node=random_adjacency_matrix(12, density=25, return_st=True)
 
-    #===get exhaustive list (and therefore exact number) of s-t paths 
+    #===1.EXHAUSTIVE list (and therefore exact number) of s-t paths 
     paths_list=get_paths(A, start_node, end_node, verbose=True)
     print('==> exact number of paths: '+str(len(paths_list)))
     # print('==> path list: '+str(paths_list))
 
-    #===NAIVE estimation of number of s-t paths
+    #===2a.NAIVE estimation of number of s-t paths
     paths_list=[]
     G=[]
     L=[]
@@ -191,5 +199,5 @@ if __name__=="__main__":
     plt.show()
 
 
-    #length-aware estimation of number of s-t paths
+    #===2b.length-aware estimation of number of s-t paths
 
