@@ -47,4 +47,24 @@ _NB3_: choosing n=12 and &epsilon;=n-1 gives 9,864,101 different paths.
 
 Back to the general case, the problem of finding the number (or a formula/procedure to obtain/estimate that number) of `(s,t)`-paths of a certain length in a random graph is complicated (it is \#P-complete)...Interesting answers are given in [(Roberts and Kroese, 2007)](https://people.smp.uq.edu.au/DirkKroese/ps/robkro_rev.pdf). Also check [here](http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=EC4731136167A4EB6D39E68680065D4B?doi=10.1.1.156.345&rep=rep1&type=pdf).
 
-`naive_path_generation` implements algorith 1 in (Roberts and Kroese, 2007) and estimates that number. However, as pointed out by the authors, it is biased toward short paths.
+`naive_path_generation` implements algorithm 1 in (Roberts and Kroese, 2007) and estimates that number. However, as pointed out by the authors, it is biased toward short paths.
+
+==> adjacency matrix:
+[[0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 1. 0. 1. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 1. 1. 0. 0. 0. 1. 0. 0. 0.]
+ [0. 0. 1. 0. 0. 0. 0. 0. 1. 0. 0. 0.]
+ [0. 1. 1. 0. 0. 0. 0. 0. 1. 1. 1. 1.]
+ [1. 0. 0. 0. 0. 0. 0. 1. 1. 1. 0. 1.]
+ [0. 1. 0. 0. 0. 0. 0. 0. 1. 1. 0. 1.]
+ [0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 1. 1. 1. 1. 1. 0. 0. 1. 1. 0.]
+ [0. 0. 0. 0. 1. 1. 1. 0. 1. 0. 1. 0.]
+ [0. 0. 0. 0. 1. 0. 0. 0. 1. 1. 0. 0.]
+ [0. 0. 0. 0. 1. 1. 1. 0. 0. 0. 0. 0.]]
+==> node set: [ 0  1  2  3  4  5  6  7  8  9 10 11]
+==> start/end: 10->9
+==> exact number of paths: 54
+==> [naive] estimated number of paths: 54
+
+![histo_naive](../figures/hito_naive.png?raw=true "histo_naive")

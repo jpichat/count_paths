@@ -77,17 +77,16 @@ def get_paths(adjacency_matrix, start_node=None, end_node=None, verbose=False):
 
 
 def naive_path_generation(adjacency_matrix, start_node:int, end_node:int):
-    """biased towards generating paths of shorter length: it does not allow one path to go
-    through the same root vertex twice [*], even though that would lead to a different solution
+    """generates a path from `start_node` via randomly chosen connected vertices
+    until one of those is either the `end_node` or a dead end (no more connected vertices available)
     """
-    children_root=get_neighbours(adjacency_matrix, start_node, [start_node])
     is_path=True
-    g=1
+    g=1 #likelihood
     counter=1
     explored_nodes=[start_node]
-    idx=np.random.randint(0,len(children_root))
-    next_valid=children_root[idx] #picks first next valid node
-    children_root=np.delete(children_root, idx) #delete it from the valid root nodes [*]
+    children=get_neighbours(adjacency_matrix, start_node, explored_nodes)
+    idx=np.random.randint(0,len(children))
+    next_valid=children[idx] #picks first next valid node
     while next_valid!=end_node:
         explored_nodes.append(next_valid)
         children_deeper=get_neighbours(adjacency_matrix, next_valid, explored_nodes)
