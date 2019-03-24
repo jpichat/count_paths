@@ -65,13 +65,13 @@ For example, given the following adjacency matrix:
  [1 1 1 1 0 1 1 1 0 0 0 0]
  [0 0 1 1 1 1 1 0 0 0 0 0]]
 ==> node set: [ 0  1  2  3  4  5  6  7  8  9 10 11]
-==> start/end: 4->7
+==> start/end: 4/7
 ==> exact number of paths: 3759
 ==> [naive] estimated number of paths: 3790.03935
 ```
 
 We can first observe that the estimated number of paths--calculated using eq.(1)--is rather close to the actual number, after 400.000 runs of `naive_path_generation`. Second, the distribution of generated paths lengths is shown below; we can clearly observe the bias toward shorter paths (as pointed out by the authors), since longer paths are more likely to reach "dead ends" along the way.
 
-One should also note that multiple valid (s,t)-paths may have the same length, which makes such a histogram tricky to interpret; as opposed to the direct path (here [12,3]) which is the only one of length 2.
+One should also note that multiple valid (s,t)-paths may have the same length, which makes such a histogram tricky to interpret; as opposed to the direct path (here [4,7]) which is the only one of length 2.
 
 ![histo_naive](figures/histo_naive2.png)

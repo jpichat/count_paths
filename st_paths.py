@@ -50,7 +50,7 @@ def get_paths(adjacency_matrix, start_node=None, end_node=None, verbose=False):
     if verbose:
         print('==> adjacency matrix:\n'+str(adjacency_matrix))
         print('==> node set: '+str(np.arange(adjacency_matrix.shape[0])))
-        print('==> start/end: '+str(start_node)+'->'+str(end_node))
+        print('==> start/end: '+str(start_node)+'/'+str(end_node))
 
     explored_nodes=[start_node]
     children=get_neighbours(adjacency_matrix, start_node, explored_nodes)
