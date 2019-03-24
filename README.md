@@ -4,16 +4,16 @@ This is part of the code of the paper [(Pichat, 2015) A multipath approach to hi
 
 We look for all the simple paths that connect vertices `s` and `t` in an undirected graph of order n.
 
-`get_paths` takes an adjacency matrix, a `start` and `end` vertices as inputs and returns an exhaustive list of all the s-t paths.
+`get_paths` takes an adjacency matrix of a graph, a `start` and `end` vertices as inputs and returns an exhaustive list of all the s-t paths.
 
-The adjacency matrix may be that of a random graph, using `random_adjacency_matrix`, or more specifically that of the graph G in (Pichat, 2015), using `our_adjacency_matrix`. 
+The adjacency matrix may be that of a random graph, generated using `random_adjacency_matrix`, or more specifically that of the graph G in (Pichat, 2015), generated using `our_adjacency_matrix`. 
 
 In the following, we comment and detail that special case. G has vertices of degrees:
  - at least &epsilon; and at most 2&epsilon; if 1&le;&epsilon;&le;floor(n/2) 
  - at least &epsilon; and at most n-1 if floor(n/2)&lt;&epsilon;&lt;n-1
  - min(deg)=max(deg)=n-1 otherwise. 
 
-&epsilon; is a parameter that tells up to how many adjacent vertices one vertex is connected with "above" and "below" (assuming the set of vertices is a sequence of increasing integers [0,1,...,n], such that "above" and "below" refer to greater or smaller vertex values). Note that degrees of vertices at both ends are less than 2&epsilon;.
+&epsilon; is a parameter that tells up to how many adjacent vertices one vertex is connected with "above" and "below" (assuming the set of vertices is a sequence of increasing integers [0,1,...,n], such that "above" and "below" refer to greater or smaller vertex values). Note that degrees of vertices at both ends must be less than 2&epsilon;.
 
 _NB1_: 
  - if &epsilon;=1, G is a path graph,
