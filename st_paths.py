@@ -137,15 +137,15 @@ def our_adjacency_matrix(n:int, eps:int):
 def random_adjacency_matrix(s=10, density=5, return_st=True):
     assert 1<=density<=sum(range(1,s))
     A=np.zeros((s,s))
-    ru,cu=np.triu_indices_from(A,1)
-    random_ind_up=[(ru[k],cu[k]) for k in [np.random.randint(0,sum(range(1,s))) for _ in range(density)]]
-    for i_upper in random_ind_up:
-        A[i_upper]=1
+    l_upper=list(zip(*np.triu_indices_from(A, 1)))
+    random_upper=[l_upper[k] for k in np.random.randint(0, sum(range(1,s)), density)] #same index may be picked multiple times
+    for i in random_upper:
+        A[i]=1
     i_lower = np.tril_indices(s, -1)
     A[i_lower]=A.T[i_lower]
     if return_st:
-        l=np.argwhere(A==1)
-        s,e=l[np.random.randint(0,len(l))]
+        l_ones=np.argwhere(A==1)
+        s,e=l_ones[np.random.randint(0, len(l_ones))] #pick a random 1 location in A for start/end couple
         return A, s, e
     else:
         return A,None,None
@@ -164,7 +164,7 @@ if __name__=="__main__":
     #random graph
     A, start_node, end_node=random_adjacency_matrix(12, density=25, return_st=True)
 
-    #===get exhaustive list (and therefore number) of s-t paths 
+    #===get exhaustive list (and therefore exact number) of s-t paths 
     paths_list=get_paths(A, start_node, end_node, verbose=True)
     print('==> exact number of paths: '+str(len(paths_list)))
     # print('==> path list: '+str(paths_list))
