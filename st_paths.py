@@ -169,7 +169,7 @@ if __name__=="__main__":
     # end_node=2
 
     #random graph
-    A, start_node, end_node=random_adjacency_matrix(12, density=25, return_st=True)
+    A, start_node, end_node=random_adjacency_matrix(12, density=21, return_st=True)
 
     #===1.EXHAUSTIVE list (and therefore exact number) of s-t paths 
     paths_list=get_paths(A, start_node, end_node, verbose=True)

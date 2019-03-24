@@ -52,24 +52,26 @@ Back to the general case, the problem of finding the number (or a formula/proced
 For example, given the following adjacency matrix:
 ```python
 A=
-[[0 0 0 0 0 1 0 0 0 0 0 0]
- [0 0 0 0 1 0 1 0 0 0 0 0]
- [0 0 0 1 1 0 0 0 1 0 0 0]
- [0 0 1 0 0 0 0 0 1 0 0 0]
- [0 1 1 0 0 0 0 0 1 1 1 1]
- [1 0 0 0 0 0 0 1 1 1 0 1]
- [0 1 0 0 0 0 0 0 1 1 0 1]
- [0 0 0 0 0 1 0 0 0 0 0 0]
- [0 0 1 1 1 1 1 0 0 1 1 0]
- [0 0 0 0 1 1 1 0 1 0 1 0]
- [0 0 0 0 1 0 0 0 1 1 0 0]
- [0 0 0 0 1 1 1 0 0 0 0 0]]
-==> node set: [0  1  2  3  4  5  6  7  8  9 10 11]
-==> start/end: 10->9
-==> exact number of paths: 54
-==> [naive] estimated number of paths: 54
+[[0 0 0 0 1 0 1 0 1 1 1 0 1 1 0]
+ [0 0 1 0 0 0 0 1 1 0 0 1 1 1 1]
+ [0 1 0 0 0 0 0 0 1 0 0 1 0 1 0]
+ [0 0 0 0 1 1 1 1 0 0 1 0 1 1 0]
+ [1 0 0 1 0 0 1 0 1 0 0 0 0 1 0]
+ [0 0 0 1 0 0 0 0 1 1 0 0 0 1 0]
+ [1 0 0 1 1 0 0 0 1 0 0 1 1 0 1]
+ [0 1 0 1 0 0 0 0 0 0 1 0 0 0 0]
+ [1 1 1 0 1 1 1 0 0 0 0 0 1 0 0]
+ [1 0 0 0 0 1 0 0 0 0 0 1 0 0 1]
+ [1 0 0 1 0 0 0 1 0 0 0 1 0 0 0]
+ [0 1 1 0 0 0 1 0 0 1 1 0 0 0 0]
+ [1 1 0 1 0 0 1 0 1 0 0 0 0 0 0]
+ [1 1 1 1 1 1 0 0 0 0 0 0 0 0 0]
+ [0 1 0 0 0 0 1 0 0 1 0 0 0 0 0]]
+==> start/end: 12->3
+==> exact number of paths: 26665
+==> [naive] estimated number of paths: 24462
 ```
 
-Here is the distribution of lengths of paths returned after 100.000 runs of `naive_path_generation`. We can clearly observe the bias toward short paths (as pointed out by the authors).
+Here is the distribution of lengths of paths returned after 400.000 runs of `naive_path_generation`. We can first observe that the estimated number is close to the exact number of paths, though incorrect; this could be improved by increasing the number of runs (relatively to the actual number of paths). Second, we can clearly observe the bias toward short paths (as pointed out by the authors).
 
-![histo_naive](figures/histo_naive.png)
+![histo_naive](figures/histo_naive2.png)
