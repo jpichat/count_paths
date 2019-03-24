@@ -72,6 +72,8 @@ A=
 ==> [naive] estimated number of paths: 24462
 ```
 
-Here is the distribution of lengths of paths returned after 400.000 runs of `naive_path_generation`. We can first observe that the estimated number is close to the exact number of paths, though incorrect; this could be improved by increasing the number of runs (relatively to the actual number of paths). Second, we can clearly observe the bias toward short paths (as pointed out by the authors).
+Here is the distribution of lengths of paths returned after 400.000 runs of `naive_path_generation`. We can first observe that the estimated number of paths is close to the exact number, but still off; this could be improved by increasing the number of runs. Second, we can clearly observe the bias toward short paths (as pointed out by the authors), since longer paths are more likely to reach "dead ends" along the way.
+
+One should also note that multiple valid (s,t)-paths may have the same length, which makes such a histogram tricky to interpret; as opposed to the direct path `(12,3)` which is the only one of length 2.
 
 ![histo_naive](figures/histo_naive2.png)
