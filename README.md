@@ -6,12 +6,19 @@ We look for all the simple paths that connect vertices `s` and `t` in an undirec
 
 `get_paths` takes an adjacency matrix, a `start` and `end` nodes as inputs and returns an exhaustive list of all the s-t paths.
 
-The adjacency matrix may be that of a random graph, using `random_adjacency_matrix`, or more specifically that of the graph G in (Pichat, 2015), using `our_adjacency_matrix`. The following are comments and details regarding that special case. G has vertices of degrees:
+The adjacency matrix may be that of a random graph, using `random_adjacency_matrix`, or more specifically that of the graph G in (Pichat, 2015), using `our_adjacency_matrix`. 
+
+In the following, we comment and detail that special case. G has vertices of degrees:
  - at least &epsilon; and at most 2&epsilon; if 1&le;&epsilon;&le;floor(n/2) 
  - at least &epsilon; and at most n-1 if floor(n/2)&lt;&epsilon;&lt;n-1
  - min(deg)=max(deg)=n-1 otherwise. 
 
 &epsilon; is a parameter that tells up to how many adjacent nodes one node is connected with "above" and "below" (assuming the set of vertices is a sequence of increasing integers [0,1,...,n]). Note that degrees of vertices at both ends are less than 2&epsilon;
+
+_NB1_: 
+ - if &epsilon;=1, G is a path graph,
+ - if 1&lt;&epsilon;&lt;n-2, G is &epsilon;-connected,
+ - if &epsilon;=n-1, G is a complete graph.
 
 The sequence of vertex degrees, S, can be obtained (1) by convolution: 
  - S=f&lowast;g where f=[1,1,...,1]&isin;&Ropf;<sup>n</sup> and g=[1,..,1,0,1,..,1]&isin;&Ropf;<sup>2&epsilon;+1</sup> (there are &epsilon; ones on each side of the central zero; that zero is used so that no vertex is self-connected). 
@@ -38,6 +45,6 @@ __Answer:__ `[[3, 1, 0, 2], [3, 1, 2], [3, 2], [3, 4, 2], [3, 5, 4, 2]]`
 
 _NB3_: choosing n=12 and &epsilon;=n-1 gives 9,864,101 different paths.
 
-Back to the general case, the problem of finding the number (or a formula/procedure to obtain/estimate that number) of `(s,t)`-paths of a certain length in a graph is complicated (it is \#P-complete)...Answers are given in [(Roberts and Kroese, 2007)](https://people.smp.uq.edu.au/DirkKroese/ps/robkro_rev.pdf). Also check [here](http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=EC4731136167A4EB6D39E68680065D4B?doi=10.1.1.156.345&rep=rep1&type=pdf).
+Back to the general case, the problem of finding the number (or a formula/procedure to obtain/estimate that number) of `(s,t)`-paths of a certain length in a random graph is complicated (it is \#P-complete)...Interesting answers are given in [(Roberts and Kroese, 2007)](https://people.smp.uq.edu.au/DirkKroese/ps/robkro_rev.pdf). Also check [here](http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=EC4731136167A4EB6D39E68680065D4B?doi=10.1.1.156.345&rep=rep1&type=pdf).
 
 `naive_path_generation` implements algorith 1 in (Roberts and Kroese, 2007) and estimates that number. However, as pointed out by the authors, it is biased toward short paths.
