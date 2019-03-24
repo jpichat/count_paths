@@ -11,9 +11,9 @@ The adjacency matrix may refer to a random graph, using `random_adjacency_matrix
  - at least &epsilon; and at most n-1 if floor(n/2)&lt;&epsilon;&lt;n-1
  - min(deg)=max(deg)=n-1 otherwise. 
 
-&epsilon; is a parameter that tells how many adjacent nodes one node is connected with "above" and "below" (asuming the set of vertices is a sequence of increasing integers [0,1,...,n]).
+&epsilon; is a parameter that tells how many adjacent nodes one node is connected with "above" and "below" (assuming the set of vertices is a sequence of increasing integers [0,1,...,n]).
 
-All vertices are connected with up to &epsilon; neighbours above and below (when possible: degrees at both ends are less than 2&epsilon). The sequence of vertex degrees, S, can be obtained (1) by convolution: 
+All vertices are connected with up to &epsilon; neighbours above and below (when possible: degrees at both ends are less than 2&epsilon;). The sequence of vertex degrees, S, can be obtained (1) by convolution: 
  - S=f&lowast;g where f=[1,1,...,1]&isin;&Ropf;<sup>n</sup> and g=[1,..,1,0,1,..,1]&isin;&Ropf;<sup>2&epsilon;+1</sup> (there are &epsilon; ones on each side of the central zero; that zero is used so that no vertex is self-connected). 
  - One easily verifies that if &epsilon;&ge;n-1, then S=[n-1,n-1,...,n-1]&isin;&Ropf;<sup>n</sup> (i.e., the graph is complete).
  - ex: for n=6 vertices, &epsilon;=2, the sequence of degrees is: S=[2,3,4,4,3,2].
