@@ -25,7 +25,7 @@ The sequence of vertex degrees, S, can be obtained (1) by convolution:
  - One easily verifies that if &epsilon;&ge;n-1, then S=[n-1,n-1,...,n-1]&isin;&Ropf;<sup>n</sup> (i.e., the graph is complete).
  - ex: for n=6 vertices, &epsilon;=2, the sequence of degrees is: S=[2,3,4,4,3,2].
 
-A more straighforward way consists of (2) summing the elements of each row (or column) of its adjacency matrix. Using the same parameters, we have A:
+A more straightforward way consists of (2) summing the elements of each row (or column) of its adjacency matrix. Using the same parameters, we have A:
 <table>
   <tr> <td bgcolor="#ff9999">0</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#ff9999">0</td> </tr>
   <tr> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#ff9999">0</td> </tr>
@@ -47,9 +47,12 @@ _NB3_: choosing n=12 and &epsilon;=n-1 gives 9,864,101 different paths.
 
 Back to the general case, the problem of finding the number (or a formula/procedure to obtain/estimate that number) of `(s,t)`-paths of a certain length in a random graph is complicated (it is \#P-complete)...Interesting answers are given in [(Roberts and Kroese, 2007)](https://people.smp.uq.edu.au/DirkKroese/ps/robkro_rev.pdf). Also check [here](http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=EC4731136167A4EB6D39E68680065D4B?doi=10.1.1.156.345&rep=rep1&type=pdf).
 
-`naive_path_generation` implements algorithm 1 in (Roberts and Kroese, 2007) and estimates that number. However, as pointed out by the authors, it is biased toward short paths.
+`naive_path_generation` implements algorithm 1 in (Roberts and Kroese, 2007) and estimates that number.
 
-==> adjacency matrix:
+For example, given the following adjacency matrix:
+```python
+
+A=
 [[0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0.]
  [0. 0. 0. 0. 1. 0. 1. 0. 0. 0. 0. 0.]
  [0. 0. 0. 1. 1. 0. 0. 0. 1. 0. 0. 0.]
@@ -66,5 +69,8 @@ Back to the general case, the problem of finding the number (or a formula/proced
 ==> start/end: 10->9
 ==> exact number of paths: 54
 ==> [naive] estimated number of paths: 54
+```
+
+Here is the distribution of lengths of paths returned after 100.000 runs of `naive_path_generation`. We can clearly observe the bias toward short paths (as pointed out by the authors).
 
 ![histo_naive](figures/histo_naive.png)
