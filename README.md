@@ -52,22 +52,22 @@ Back to the general case, the problem of finding the number (or a formula/proced
 For example, given the following adjacency matrix:
 ```python
 ==> adjacency matrix:
-[[0 0 0 1 0 0 1 0 1 1 0 1]
- [0 0 0 0 1 0 0 1 1 1 0 0]
- [0 0 0 0 0 0 1 0 1 1 0 0]
- [1 0 0 0 0 1 0 0 0 1 0 1]
- [0 1 0 0 0 0 0 0 1 0 0 1]
- [0 0 0 1 0 0 0 0 1 1 0 1]
- [1 0 1 0 0 0 0 0 1 1 0 1]
- [0 1 0 0 0 0 0 0 1 0 1 1]
- [1 1 1 0 1 1 1 1 0 1 0 0]
- [1 1 1 1 0 1 1 0 1 0 1 1]
- [0 0 0 0 0 0 0 1 0 1 0 1]
- [1 0 0 1 1 1 1 1 0 1 1 0]]
-==> node set: [0  1  2  3  4  5  6  7  8  9 10 11]
-==> start/end: 3->5
-==> exact number of paths: 1357
-==> [naive] estimated number of paths: 1337.82616
+[[0 1 1 0 0 0 1 1 0 1 1 0]
+ [1 0 0 1 0 0 1 0 1 1 1 0]
+ [1 0 0 1 1 0 1 0 0 0 1 1]
+ [0 1 1 0 0 0 0 1 1 0 1 1]
+ [0 0 1 0 0 0 0 1 0 0 0 1]
+ [0 0 0 0 0 0 0 1 0 1 1 1]
+ [1 1 1 0 0 0 0 0 0 0 1 1]
+ [1 0 0 1 1 1 0 0 1 1 1 0]
+ [0 1 0 1 0 0 0 1 0 0 0 0]
+ [1 1 0 0 0 1 0 1 0 0 0 0]
+ [1 1 1 1 0 1 1 1 0 0 0 0]
+ [0 0 1 1 1 1 1 0 0 0 0 0]]
+==> node set: [ 0  1  2  3  4  5  6  7  8  9 10 11]
+==> start/end: 4->7
+==> exact number of paths: 3759
+==> [naive] estimated number of paths: 3790.03935
 ```
 
 We can first observe that the estimated number of paths--calculated using eq.(1)--is rather close to the actual number, after 400.000 runs of `naive_path_generation`. Second, the distribution of generated paths lengths is shown below; we can clearly observe the bias toward shorter paths (as pointed out by the authors), since longer paths are more likely to reach "dead ends" along the way.
