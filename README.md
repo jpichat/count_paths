@@ -67,4 +67,4 @@ Back to the general case, the problem of finding the number (or a formula/proced
 ==> exact number of paths: 54
 ==> [naive] estimated number of paths: 54
 
-![histo_naive](hito_naive.png)
+![histo_naive](figures/histo_naive.png)
