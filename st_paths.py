@@ -153,9 +153,9 @@ def random_adjacency_matrix(s=10, density=5, return_st=True):
     if return_st:
         l_ones=np.argwhere(A==1)
         s,e=l_ones[np.random.randint(0, len(l_ones))] #pick a random 1 location in A for start/end couple
-        return A, s, e
+        return A.astype(int), s, e
     else:
-        return A,None,None
+        return A.astype(int),None,None
 
 
 
