@@ -26,15 +26,15 @@ The sequence of vertex degrees, S, can be obtained (1) by convolution:
  - ex: for n=6 vertices, &epsilon;=2, the sequence of degrees is: S=[2,3,4,4,3,2].
 
 A more straightforward way consists of (2) summing the elements of each row (or column) of its adjacency matrix. Using the same parameters, we have A:
-<table>
-  <tr> <td bgcolor="#ff9999">0</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#ff9999">0</td> </tr>
-  <tr> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#ff9999">0</td> </tr>
-  <tr> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#ff9999">0</td> </tr>
-  <tr> <td bgcolor="#ff9999">0</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#b3ffb3">1</td> </tr>
-  <tr> <td bgcolor="#ff9999">0</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#b3ffb3">1</td>  </tr>
-  <tr> <td bgcolor="#ff9999">0</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#ff9999">0</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#b3ffb3">1</td> <td bgcolor="#ff9999">0</td> </tr>
-</table> 
-
+```python
+A=
+[[0 1 1 0 0 0]
+ [1 0 1 1 0 0]
+ [1 1 0 1 1 0]
+ [0 1 1 0 1 1]
+ [0 0 1 1 0 1]
+ [0 0 0 1 1 0]]
+```
 which yields the same sequence, S=[2,3,4,4,3,2].
 
 _NB2_: the number of diagonals of ones above (resp. below) the main diagonal is &epsilon; (and it is bounded by n-1, in which case the graph is complete--without self-connections).
@@ -74,6 +74,6 @@ A=
 
 Here is the distribution of lengths of paths returned after 400.000 runs of `naive_path_generation`. We can first observe that the estimated number of paths is close to the exact number, but still off; this could be improved by increasing the number of runs. Second, we can clearly observe the bias toward short paths (as pointed out by the authors), since longer paths are more likely to reach "dead ends" along the way.
 
-One should also note that multiple valid (s,t)-paths may have the same length, which makes such a histogram tricky to interpret; as opposed to the direct path `(12,3)` which is the only one of length 2.
+One should also note that multiple valid (s,t)-paths may have the same length, which makes such a histogram tricky to interpret; as opposed to the direct path (here [12,3]) which is the only one of length 2.
 
 ![histo_naive](figures/histo_naive2.png)
