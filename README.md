@@ -2,9 +2,9 @@ This is part of the code of the paper [(Pichat, 2015) A multipath approach to hi
 
 ## counting (s,t)-paths in a graph
 
-We look for all the simple paths that connect vertices `s` and `t` in an undirected graph of order n.
+We look for all the simple paths that connect vertices `s` and `t` (i.e., the (s,t)-paths) in an undirected graph of order n.
 
-`get_paths` takes an adjacency matrix of a graph, a `start` and `end` vertices as inputs and returns an exhaustive list of all the s-t paths.
+`get_paths` takes as inputs: the adjacency matrix of a graph, a `start` and `end` vertices, and returns an exhaustive list of all the (s,t)-paths (and thereby their exact count).
 
 The adjacency matrix may be that of a random graph, generated using `random_adjacency_matrix`, or more specifically that of the graph G in (Pichat, 2015), generated using `our_adjacency_matrix`. 
 
