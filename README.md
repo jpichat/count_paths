@@ -2,7 +2,7 @@ This is part of the code for the paper [(Pichat, 2015) A multipath approach to h
 
 Counting (s,t)-paths in a graph
 ==================
-__Problem__: we look for (all) the simple paths that connect vertices `s` and `t` (i.e., the (s,t)-paths) in an undirected graph of order n. This may consist of listing those paths ([see A](#headingI)), in which case the count is a by-product; or deriving a method that estimates the count without having to go through all the possible paths ([see B](#headingB)); note that the latter has little interest when one seeks the actual paths (but this is limited to rather small graphs).
+_Problem_: we look for (all) the simple paths that connect vertices `s` and `t` (i.e., the (s,t)-paths) in an undirected graph of order n. This may consist of listing those paths ([see A](#headingI)), in which case the count is a by-product; or deriving a method that estimates the count without having to go through all the possible paths ([see B](#headingB)); note that the latter has little interest when one seeks the actual paths (but this is limited to rather small graphs).
 
 
 ## <a name="headingA"></a>A. Get the list of (s,t)-paths
@@ -10,7 +10,7 @@ __Problem__: we look for (all) the simple paths that connect vertices `s` and `t
 
 Note that the adjacency matrix may be that of a random graph, generated using `rand_adjacency_matrix`, or more specifically that of the graph G used in (Pichat, 2015), generated using `spe_adjacency_matrix`. In the following, we briefly comment on the latter case. 
 
-__NB0__:the vertices of G have degrees:
+_NB0_:the vertices of G have degrees:
  - at least &epsilon; and at most 2&epsilon; if 1&le;&epsilon;&le;floor(n/2) 
  - at least &epsilon; and at most n-1 if floor(n/2)&lt;&epsilon;&lt;n-1
  - min(deg)=max(deg)=n-1 otherwise. 
