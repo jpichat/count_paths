@@ -113,10 +113,7 @@ def vdegrees(n:int, eps:int):
     return signal.convolve(g, el, 'same')
 
 
-def our_adjacency_matrix(n:int, eps:int):
-    """return the adjency matrix of our n-vertex 
-    eps-connected undirected graph
-    """
+def spe_adjacency_matrix(n:int, eps:int):
     A=np.zeros((n,n))
     dr,dc=np.diag_indices(n)
     for o in range(1,eps+1):
@@ -128,11 +125,11 @@ def our_adjacency_matrix(n:int, eps:int):
 
 
 
-def random_adjacency_matrix(s, density=0.5, return_st=True):
+def rand_adjacency_matrix(s, density=0.5, return_st=True):
     """
     Notes
     -----
-    - density describes how dense the graph can be [0,1] with 1 making the graph complete
+    - density (float between [0,1]) describes how dense the graph is; with 1 making the graph complete
     - there might be isolated vertices
     """
     assert 0<density<=1
@@ -156,34 +153,36 @@ def random_adjacency_matrix(s, density=0.5, return_st=True):
 
 if __name__=="__main__":
     #===0.ADJACENCY matrix
-    #special case of our paper's graph
+    #special case
     # n=6                 #total number of vertices
     # eps=5               #number of jumps allowed
-    # A=our_adjacency_matrix(n,eps)
+    # A=spe_adjacency_matrix(n,eps)
     # start_node=3
     # end_node=2
 
     #random graph
-    A, start_node, end_node=random_adjacency_matrix(12, density=0.7, return_st=True)
+    A, start_node, end_node=rand_adjacency_matrix(12, density=0.7, return_st=True)
 
     #===1.EXHAUSTIVE list (and therefore exact number) of s-t paths 
     paths_list=get_paths(A, start_node, end_node, verbose=True)
-    print('==> exact number of paths: '+str(len(paths_list)))
     # print('==> path list: '+str(paths_list))
+    print('==> exact number of paths: '+str(len(paths_list)))
 
     #===2a.NAIVE estimation of number of s-t paths
     paths_list=[]
     L=[]
-    n_estimate=0
-    iterations=5000
-    for i in range(iterations):
-        path,g=naive_path_generation(A,start_node,end_node)
+    n=0
+    N=5000
+    for i in range(N):
+        path,g=naive_path_generation(A, start_node, end_node)
         if path:
             L.append(len(path)) #lenghts of generated valid paths
-            n_estimate+=1/g #eq.(1)
+            n+=1/g #eq.(1)
             if path not in paths_list:
                 paths_list.append(path)
-    print('==> [naive] estimated number of paths: '+str(n_estimate/iterations))
+    # print('==> [naive] paths list: '+str(paths_list))
+    print('==> [naive] estimated number of paths: '+str(n/N))
+    
     #plots
     fig, ax= plt.subplots(nrows=1, ncols=1)
     binwidth=0.5

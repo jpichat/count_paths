@@ -8,7 +8,7 @@ Problem: We look for (all) the simple paths that connect vertices `s` and `t` (i
 ## <a name="headingA"></a>A. Get the list of (s,t)-paths
 `get_paths` takes as input (i) the adjacency matrix of a graph, (ii) a `start` and (iii) `end` vertices, and returns an exhaustive list of all the (s,t)-paths.
 
-Note that the adjacency matrix may be that of a random graph, generated using `random_adjacency_matrix`, or more specifically that of the graph G in (Pichat, 2015), generated using `our_adjacency_matrix`.
+Note that the adjacency matrix may be that of a random graph, generated using `rand_adjacency_matrix`, or more specifically that of the graph G used in (Pichat, 2015), generated using `spe_adjacency_matrix`.
 
 In the following, we briefly comment on the latter case, for which G has vertices of degrees:
  - at least &epsilon; and at most 2&epsilon; if 1&le;&epsilon;&le;floor(n/2) 
