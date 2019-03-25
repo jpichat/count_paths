@@ -2,14 +2,15 @@ This is part of the code of the paper [(Pichat, 2015) A multipath approach to hi
 
 Counting (s,t)-paths in a graph
 ==================
-Problem: We look for all the simple paths that connect vertices `s` and `t` (i.e., the (s,t)-paths) in an undirected graph of order n.
+Problem: We look for (all) the simple paths that connect vertices `s` and `t` (i.e., the (s,t)-paths) in an undirected graph of order n. This may consist of listing those paths (see I), in which case the count is a by-product; or deriving a method that estimates the count without having to go through all the possible paths (see II.); note that the latter has little interest when one seeks the actual paths (but this is limited to rather small graphs).
 
-Solution: `get_paths` takes as input (i) the adjacency matrix of a graph, (ii) a `start` and (iii) `end` vertices, and returns an exhaustive list of all the (s,t)-paths (and thereby their exact count).
 
-The adjacency matrix may be that of a random graph, generated using `random_adjacency_matrix`, or more specifically that of the graph G in (Pichat, 2015), generated using `our_adjacency_matrix`. 
+## I. Get the list of (s,t)-paths in a specific graph (Pichat, 2015)
+Solution to I. `get_paths` takes as input (i) the adjacency matrix of a graph, (ii) a `start` and (iii) `end` vertices, and returns an exhaustive list of all the (s,t)-paths.
 
-### Case study: (Pichat, 2015)
-In the following, we comment and detail that special case. G has vertices of degrees:
+Note that the adjacency matrix may be that of a random graph, generated using `random_adjacency_matrix`, or more specifically that of the graph G in (Pichat, 2015), generated using `our_adjacency_matrix`.
+
+In the following, we briefly comment on the latter case, for which G has vertices of degrees:
  - at least &epsilon; and at most 2&epsilon; if 1&le;&epsilon;&le;floor(n/2) 
  - at least &epsilon; and at most n-1 if floor(n/2)&lt;&epsilon;&lt;n-1
  - min(deg)=max(deg)=n-1 otherwise. 
@@ -44,11 +45,11 @@ __Question:__ What are all the (3,2)-paths in G (adjacency matrix is A)? (the ca
 
 __Answer:__ `[[3, 1, 0, 2], [3, 1, 2], [3, 2], [3, 4, 2], [3, 5, 4, 2]]`
 
-_NB3_: choosing n=12 and &epsilon;=n-1 gives 9,864,101 different paths.
+_NB3_: choosing n=12 and &epsilon;=n-1 gives 9,864,101 different paths using `get_paths`; and although complete, this is still a rather small graph.
 
 
-###Back to the general case
-The problem of finding the number (or a formula/procedure to obtain/estimate that number) of `(s,t)`-paths of a certain length in a random graph is complicated (it is \#P-complete)...Interesting answers are given in [(Roberts and Kroese, 2007)](https://people.smp.uq.edu.au/DirkKroese/ps/robkro_rev.pdf). Also check [here](http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=EC4731136167A4EB6D39E68680065D4B?doi=10.1.1.156.345&rep=rep1&type=pdf).
+## II. Back to the general case: estimating the count in random graphs
+The problem of estimating the number of `(s,t)`-paths in random graphs is complicated (it is \#P-complete), as listing them all in order to get their exact count is computationally intensive for large graphs...This is where sequential Monte Carlo methods are useful and interesting answers are proposed in [(Roberts and Kroese, 2007)](https://people.smp.uq.edu.au/DirkKroese/ps/robkro_rev.pdf). Also check [here](http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=EC4731136167A4EB6D39E68680065D4B?doi=10.1.1.156.345&rep=rep1&type=pdf).
 
 `naive_path_generation` implements algorithm 1 in (Roberts and Kroese, 2007) and estimates that number.
 
