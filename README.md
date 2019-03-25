@@ -1,16 +1,16 @@
-This is part of the code of the paper [(Pichat, 2015) A multipath approach to histology volume reconstruction](http://discovery.ucl.ac.uk/1468614/3/ISBI2015_tig.pdf)
+This is part of the code for the paper [(Pichat, 2015) A multipath approach to histology volume reconstruction](http://discovery.ucl.ac.uk/1468614/3/ISBI2015_tig.pdf)
 
 Counting (s,t)-paths in a graph
 ==================
-Problem: We look for (all) the simple paths that connect vertices `s` and `t` (i.e., the (s,t)-paths) in an undirected graph of order n. This may consist of listing those paths ([see A](#headingI)), in which case the count is a by-product; or deriving a method that estimates the count without having to go through all the possible paths ([see B](#headingB)); note that the latter has little interest when one seeks the actual paths (but this is limited to rather small graphs).
+__Problem__: we look for (all) the simple paths that connect vertices `s` and `t` (i.e., the (s,t)-paths) in an undirected graph of order n. This may consist of listing those paths ([see A](#headingI)), in which case the count is a by-product; or deriving a method that estimates the count without having to go through all the possible paths ([see B](#headingB)); note that the latter has little interest when one seeks the actual paths (but this is limited to rather small graphs).
 
 
 ## <a name="headingA"></a>A. Get the list of (s,t)-paths
 `get_paths` takes as input (i) the adjacency matrix of a graph, (ii) a `start` and (iii) `end` vertices, and returns an exhaustive list of all the (s,t)-paths.
 
-Note that the adjacency matrix may be that of a random graph, generated using `rand_adjacency_matrix`, or more specifically that of the graph G used in (Pichat, 2015), generated using `spe_adjacency_matrix`.
+Note that the adjacency matrix may be that of a random graph, generated using `rand_adjacency_matrix`, or more specifically that of the graph G used in (Pichat, 2015), generated using `spe_adjacency_matrix`. In the following, we briefly comment on the latter case. 
 
-In the following, we briefly comment on the latter case, for which G has vertices of degrees:
+__NB0__:the vertices of G have degrees:
  - at least &epsilon; and at most 2&epsilon; if 1&le;&epsilon;&le;floor(n/2) 
  - at least &epsilon; and at most n-1 if floor(n/2)&lt;&epsilon;&lt;n-1
  - min(deg)=max(deg)=n-1 otherwise. 
@@ -22,14 +22,8 @@ _NB1_:
  - if 1&lt;&epsilon;&lt;n-2, G is &epsilon;-connected,
  - if &epsilon;=n-1, G is a complete graph.
 
-The sequence of vertex degrees, S, can be obtained (1) by convolution: 
- - S=f&lowast;g where f=[1,1,...,1]&isin;&Ropf;<sup>n</sup> and g=[1,..,1,0,1,..,1]&isin;&Ropf;<sup>2&epsilon;+1</sup> (there are &epsilon; ones on each side of the central zero; that zero is used so that no vertex is self-connected). 
- - One easily verifies that if &epsilon;&ge;n-1, then S=[n-1,n-1,...,n-1]&isin;&Ropf;<sup>n</sup> (i.e., the graph is complete).
- - ex: for n=6 vertices, &epsilon;=2, the sequence of degrees is: S=[2,3,4,4,3,2].
-
-A more straightforward way consists of (2) summing the elements of each row (or column) of its adjacency matrix. Using the same parameters, we have A:
+Taking n=6 vertices, &epsilon;=2, G has the following adjacency matrix:
 ```python
-A=
 [[0 1 1 0 0 0]
  [1 0 1 1 0 0]
  [1 1 0 1 1 0]
@@ -37,7 +31,12 @@ A=
  [0 0 1 1 0 1]
  [0 0 0 1 1 0]]
 ```
-which yields the same sequence, S=[2,3,4,4,3,2].
+The sequence of its vertices degrees can be obtained by summing the elements of each row (or column) of its adjacency matrix. In the previous example, that sequence is S=[2,3,4,4,3,2].
+
+Note that S can also be obtained by convolution: 
+ - S=f&lowast;g where f=[1,1,...,1]&isin;&Ropf;<sup>n</sup> and g=[1,..,1,0,1,..,1]&isin;&Ropf;<sup>2&epsilon;+1</sup> (there are &epsilon; ones on each side of the central zero; that zero is used so that no vertex is self-connected). 
+ - One easily verifies that if &epsilon;&ge;n-1, then S=[n-1,n-1,...,n-1]&isin;&Ropf;<sup>n</sup> (i.e., the graph is complete).
+ - ex: for n=6 vertices, &epsilon;=2, the sequence of degrees is: S=[2,3,4,4,3,2].
 
 _NB2_: the number of diagonals of ones above (resp. below) the main diagonal is &epsilon; (and it is bounded by n-1, in which case the graph is complete--without self-connections).
 
