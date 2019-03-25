@@ -40,7 +40,7 @@ Note that S can also be obtained by convolution:
 
 _NB2_: the number of diagonals of ones above (resp. below) the main diagonal is &epsilon; (and it is bounded by n-1, in which case the graph is complete--without self-connections).
 
-For the sake of illustration and using the same example (n=6 vertices, &epsilon;=2;), the list of all the (3,2)-paths in G is `[[3, 1, 0, 2], [3, 1, 2], [3, 2], [3, 4, 2], [3, 5, 4, 2]]` (the case &epsilon;=1 is trivial and gives only `[3, 2]`).
+For the sake of illustration and using the same example (n=6 vertices, &epsilon;=2), the list of all the (3,2)-paths in G is `[[3, 1, 0, 2], [3, 1, 2], [3, 2], [3, 4, 2], [3, 5, 4, 2]]` (the case &epsilon;=1 is trivial and gives only `[3, 2]`).
 
 _NB3_: choosing n=12 and &epsilon;=n-1 gives 9,864,101 different paths using `get_paths`; and although complete, this is still a rather small graph.
 
