@@ -2,14 +2,14 @@ This is part of the code of the paper [(Pichat, 2015) A multipath approach to hi
 
 ## counting (s,t)-paths in a graph
 
-We look for all the simple paths that connect vertices `s` and `t` (i.e., the (s,t)-paths) in an undirected graph of order n.
+Problem: We look for all the simple paths that connect vertices `s` and `t` (i.e., the (s,t)-paths) in an undirected graph of order n.
 
-`get_paths` takes as inputs: the adjacency matrix of a graph, a `start` and `end` vertices, and returns an exhaustive list of all the (s,t)-paths (and thereby their exact count).
+Solution: `get_paths` takes as inputs: the adjacency matrix of a graph, a `start` and `end` vertices, and returns an exhaustive list of all the (s,t)-paths (and thereby their exact count).
 
 The adjacency matrix may be that of a random graph, generated using `random_adjacency_matrix`, or more specifically that of the graph G in (Pichat, 2015), generated using `our_adjacency_matrix`. 
+
+Case study
 ==================
-
-
 In the following, we comment and detail that special case. G has vertices of degrees:
  - at least &epsilon; and at most 2&epsilon; if 1&le;&epsilon;&le;floor(n/2) 
  - at least &epsilon; and at most n-1 if floor(n/2)&lt;&epsilon;&lt;n-1
@@ -46,10 +46,11 @@ __Question:__ What are all the (3,2)-paths in G (adjacency matrix is A)? (the ca
 __Answer:__ `[[3, 1, 0, 2], [3, 1, 2], [3, 2], [3, 4, 2], [3, 5, 4, 2]]`
 
 _NB3_: choosing n=12 and &epsilon;=n-1 gives 9,864,101 different paths.
+
+
+Back to the general case
 ==================
-
-
-Back to the general case, the problem of finding the number (or a formula/procedure to obtain/estimate that number) of `(s,t)`-paths of a certain length in a random graph is complicated (it is \#P-complete)...Interesting answers are given in [(Roberts and Kroese, 2007)](https://people.smp.uq.edu.au/DirkKroese/ps/robkro_rev.pdf). Also check [here](http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=EC4731136167A4EB6D39E68680065D4B?doi=10.1.1.156.345&rep=rep1&type=pdf).
+The problem of finding the number (or a formula/procedure to obtain/estimate that number) of `(s,t)`-paths of a certain length in a random graph is complicated (it is \#P-complete)...Interesting answers are given in [(Roberts and Kroese, 2007)](https://people.smp.uq.edu.au/DirkKroese/ps/robkro_rev.pdf). Also check [here](http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=EC4731136167A4EB6D39E68680065D4B?doi=10.1.1.156.345&rep=rep1&type=pdf).
 
 `naive_path_generation` implements algorithm 1 in (Roberts and Kroese, 2007) and estimates that number.
 
