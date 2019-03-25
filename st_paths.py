@@ -82,26 +82,22 @@ def naive_path_generation(adjacency_matrix, start_node:int, end_node:int):
     """
     is_path=True
     g=1 #likelihood
-    explored_nodes=[start_node]
-    children=get_neighbours(adjacency_matrix, start_node, explored_nodes)
-    idx=np.random.randint(0,len(children))
-    next_valid=children[idx] #picks first next valid node
-    g*=1/len(children) #update likelihood
+    explored_nodes=[]
+    next_valid=start_node
     while next_valid!=end_node:
         explored_nodes.append(next_valid)
-        children_deeper=get_neighbours(adjacency_matrix, next_valid, explored_nodes)
-        if len(children_deeper)>0:
-            g*=1/len(children_deeper)
-            idx_deep=np.random.randint(0,len(children_deeper))
-            next_valid=children_deeper[idx_deep]
-            children_deeper=np.delete(children_deeper, idx_deep)
+        children=get_neighbours(adjacency_matrix, next_valid, explored_nodes)
+        if len(children)>0:
+            g*=1/len(children)
+            random_idx=np.random.randint(0,len(children))
+            next_valid=children[random_idx]
+            children=np.delete(children, random_idx)
         else:
             is_path=False
             break
     if is_path:
         explored_nodes.append(next_valid)
-        path=explored_nodes
-        return path, g
+        return explored_nodes, g
     else:
         return [None]*2
 
@@ -132,21 +128,21 @@ def our_adjacency_matrix(n:int, eps:int):
 
 
 
-def random_adjacency_matrix(s=10, density=5, return_st=True):
+def random_adjacency_matrix(s, density=0.5, return_st=True):
     """
     Notes
     -----
-    - density=sum(range(1,s)) does not ensure the graph is complete (without self-connections) as the same index 
-    may be picked multiple times in `random_upper` (however it gets less likely to happen as `s` grows). 
-    We can only say the graph is epsilon-connected with epsilon>=1.
+    - density describes how dense the graph can be [0,1] with 1 making the graph complete
     - there might be isolated vertices
     """
-    assert 1<=density<=sum(range(1,s))
+    assert 0<density<=1
+    n_density=int(np.ceil(density*sum(range(1,s))))
     A=np.zeros((s,s))
-    l_upper=list(zip(*np.triu_indices_from(A, 1)))
-    random_upper=[l_upper[k] for k in np.random.randint(0, sum(range(1,s)), density)] #same index may be picked multiple times
-    for i in random_upper:
-        A[i]=1
+    l_upper=np.array(list(zip(*np.triu_indices_from(A, 1))))
+    random_idx=np.random.permutation(len(l_upper))[:n_density]
+    random_l_upper=l_upper[random_idx]
+    for i in random_l_upper:
+        A[i[0],i[1]]=1
     i_lower = np.tril_indices(s, -1)
     A[i_lower]=A.T[i_lower]
     if return_st:
@@ -168,7 +164,7 @@ if __name__=="__main__":
     # end_node=2
 
     #random graph
-    A, start_node, end_node=random_adjacency_matrix(12, density=40, return_st=True)
+    A, start_node, end_node=random_adjacency_matrix(12, density=0.7, return_st=True)
 
     #===1.EXHAUSTIVE list (and therefore exact number) of s-t paths 
     paths_list=get_paths(A, start_node, end_node, verbose=True)
@@ -179,7 +175,7 @@ if __name__=="__main__":
     paths_list=[]
     L=[]
     n_estimate=0
-    iterations=100000
+    iterations=5000
     for i in range(iterations):
         path,g=naive_path_generation(A,start_node,end_node)
         if path:
