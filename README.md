@@ -5,7 +5,7 @@ Counting (s,t)-paths in a graph
 Problem: We look for (all) the simple paths that connect vertices `s` and `t` (i.e., the (s,t)-paths) in an undirected graph of order n. This may consist of listing those paths ([see A](#headingI)), in which case the count is a by-product; or deriving a method that estimates the count without having to go through all the possible paths ([see B](#headingB)); note that the latter has little interest when one seeks the actual paths (but this is limited to rather small graphs).
 
 
-## A. Get the list of (s,t)-paths<a name="headingA"></a>
+## <a name="headingA"></a>A. Get the list of (s,t)-paths
 `get_paths` takes as input (i) the adjacency matrix of a graph, (ii) a `start` and (iii) `end` vertices, and returns an exhaustive list of all the (s,t)-paths.
 
 Note that the adjacency matrix may be that of a random graph, generated using `random_adjacency_matrix`, or more specifically that of the graph G in (Pichat, 2015), generated using `our_adjacency_matrix`.
@@ -48,7 +48,7 @@ __Answer:__ `[[3, 1, 0, 2], [3, 1, 2], [3, 2], [3, 4, 2], [3, 5, 4, 2]]`
 _NB3_: choosing n=12 and &epsilon;=n-1 gives 9,864,101 different paths using `get_paths`; and although complete, this is still a rather small graph.
 
 
-## B. Back to the general case: estimating the count in random graphs<a name="headingB"></a>
+## <a name="headingB"></a>B. Back to the general case: estimating the count in random graphs
 The problem of estimating the number of `(s,t)`-paths in random graphs is complicated (it is \#P-complete), as listing them all in order to get their exact count is computationally intensive for large graphs...This is where sequential Monte Carlo methods are useful and interesting answers are proposed in [(Roberts and Kroese, 2007)](https://people.smp.uq.edu.au/DirkKroese/ps/robkro_rev.pdf). Also check [here](http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=EC4731136167A4EB6D39E68680065D4B?doi=10.1.1.156.345&rep=rep1&type=pdf).
 
 `naive_path_generation` implements algorithm 1 in (Roberts and Kroese, 2007) and estimates that number.
