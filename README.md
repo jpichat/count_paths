@@ -36,13 +36,11 @@ The sequence of its vertices degrees can be obtained by summing the elements of 
 Note that S can also be obtained by convolution: 
  - S=f&lowast;g where f=[1,1,...,1]&isin;&Ropf;<sup>n</sup> and g=[1,..,1,0,1,..,1]&isin;&Ropf;<sup>2&epsilon;+1</sup> (there are &epsilon; ones on each side of the central zero; that zero is used so that no vertex is self-connected). 
  - One easily verifies that if &epsilon;&ge;n-1, then S=[n-1,n-1,...,n-1]&isin;&Ropf;<sup>n</sup> (i.e., the graph is complete).
- - ex: for n=6 vertices, &epsilon;=2, the sequence of degrees is: S=[2,3,4,4,3,2].
+ - ex: for n=6 vertices, &epsilon;=2, then S=[2,3,4,4,3,2].
 
 _NB2_: the number of diagonals of ones above (resp. below) the main diagonal is &epsilon; (and it is bounded by n-1, in which case the graph is complete--without self-connections).
 
-__Question:__ What are all the (3,2)-paths in G? (n=6 vertices, &epsilon;=2; the case &epsilon;=1 is trivial and gives only `[3, 2]`)
-
-__Answer:__ `[[3, 1, 0, 2], [3, 1, 2], [3, 2], [3, 4, 2], [3, 5, 4, 2]]`
+For the sake of illustration and using the same example (n=6 vertices, &epsilon;=2;), the list of all the (3,2)-paths in G is `[[3, 1, 0, 2], [3, 1, 2], [3, 2], [3, 4, 2], [3, 5, 4, 2]]` (the case &epsilon;=1 is trivial and gives only `[3, 2]`).
 
 _NB3_: choosing n=12 and &epsilon;=n-1 gives 9,864,101 different paths using `get_paths`; and although complete, this is still a rather small graph.
 
