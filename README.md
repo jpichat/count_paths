@@ -15,7 +15,7 @@ _NB0_: the vertices of G have degrees:
  - at least &epsilon; and at most n-1 if floor(n/2)&lt;&epsilon;&lt;n-1
  - min(deg)=max(deg)=n-1 otherwise. 
 
-&epsilon; is a parameter that tells up to how many adjacent vertices one vertex is connected with "above" and "below" (assuming the set of vertices is a sequence of increasing integers [0,1,...,n], such that "above" and "below" refer to greater or smaller vertex values). Note that degrees of vertices at both ends must be less than 2&epsilon;.
+&epsilon; is a parameter that controls the number of adjacent vertices to which one vertex is connected "above" and "below" (assuming the set of vertices is a sequence of increasing integers [0,1,...,n], such that "above" and "below" refer to greater or smaller vertex values). Note that degrees of vertices at both ends must be less than 2&epsilon;.
 
 _NB1_: 
  - if &epsilon;=1, G is a path graph,
@@ -31,7 +31,7 @@ Taking n=6 vertices, &epsilon;=2, G has the following adjacency matrix:
  [0 0 1 1 0 1]
  [0 0 0 1 1 0]]
 ```
-The sequence of its vertices degrees can be obtained by summing the elements of each row (or column) of its adjacency matrix. In the previous example, that sequence is S=[2,3,4,4,3,2].
+The sequence of its vertices degrees can be obtained by summing the elements of each row (or column) of its adjacency matrix. In that example, the sequence is S=[2,3,4,4,3,2].
 
 Note that S can also be obtained by convolution: 
  - S=f&lowast;g where f=[1,1,...,1]&isin;&Ropf;<sup>n</sup> and g=[1,..,1,0,1,..,1]&isin;&Ropf;<sup>2&epsilon;+1</sup> (there are &epsilon; ones on each side of the central zero; that zero is used so that no vertex is self-connected). 
