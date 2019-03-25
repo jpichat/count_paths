@@ -10,7 +10,7 @@ _Problem_: we look for (all) the simple paths that connect vertices `s` and `t` 
 
 Note that the adjacency matrix may be that of a random graph, generated using `rand_adjacency_matrix`, or more specifically that of the graph G used in (Pichat, 2015), generated using `spe_adjacency_matrix`. In the following, we briefly comment on the latter case. 
 
-_NB0_:the vertices of G have degrees:
+_NB0_: the vertices of G have degrees:
  - at least &epsilon; and at most 2&epsilon; if 1&le;&epsilon;&le;floor(n/2) 
  - at least &epsilon; and at most n-1 if floor(n/2)&lt;&epsilon;&lt;n-1
  - min(deg)=max(deg)=n-1 otherwise. 
@@ -40,7 +40,7 @@ Note that S can also be obtained by convolution:
 
 _NB2_: the number of diagonals of ones above (resp. below) the main diagonal is &epsilon; (and it is bounded by n-1, in which case the graph is complete--without self-connections).
 
-__Question:__ What are all the (3,2)-paths in G (adjacency matrix is A)? (the case &epsilon;=1 is trivial and gives only `[3, 2]`)
+__Question:__ What are all the (3,2)-paths in G? (n=6 vertices, &epsilon;=2; the case &epsilon;=1 is trivial and gives only `[3, 2]`)
 
 __Answer:__ `[[3, 1, 0, 2], [3, 1, 2], [3, 2], [3, 4, 2], [3, 5, 4, 2]]`
 
